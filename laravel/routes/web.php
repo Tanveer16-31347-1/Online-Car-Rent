@@ -211,8 +211,8 @@ Route::post('/portal/admin/department', 'adminController@insertdepartment');
 Route::get('/portal/admin/department','adminController@department')->name('admin.department');
 
 //Route::get('/portal/admin/course','adminController@courseinsert')->name('admin.course');
-Route::post('/portal/admin/course', 'adminController@insertcourse');
-Route::get('/portal/admin/course','adminController@course')->name('admin.course');
+Route::post('/portal/admin/car', 'adminController@insertcar');
+Route::get('/portal/admin/car','adminController@car')->name('admin.car');
 
 
 
