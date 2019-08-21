@@ -156,11 +156,14 @@ Route::post('/portal/student/scheduleDetails/uploadSlide/{c_student_id}','studen
 //std ends portal 
 
 
-//register starts portal
+//member starts portal
 
 Route::get('/portal/member','memberController@index')->name('member.index');
-Route::get('/portal/register/notice','registerController@notice')->name('register.notice');
-Route::get('/portal/register/notice/insert','registerController@noticeinsert')->name('register.notice.insert');
+Route::get('/portal/member/carlist','memberController@carlist')->name('member.carlist');
+Route::get('/portal/member/carlist/insert','memberController@memberinsert')->name('member.carlist.insert');
+
+
+Route::get('/portal/member/carlist/member/{c_id}', 'memberController@updateMember')->name('member.updateMember');//new user add
 
 Route::post('/portal/register/notice/insert', 'registerController@insertnotice');
 Route::get('//portal/register/notice/details/{n_id}', 'registerController@details')->name('register.notice.details');
@@ -190,10 +193,7 @@ Route::post('/portal/register/semester', 'registerController@insertsemester');
 
 Route::get('/portal/admin','adminController@index')->name('admin.index');
 Route::get('/portal/admin/verification','adminController@verification')->name('admin.verification');
-//Route::get('/portal/admin/userlist','adminController@userlist')->name('admin.userlist');
-//Route::get('/portal/admin/verification/delete/{ut_id}','adminController@delete()')->name('admin.delete');
-//Route::post('/portal/admin/verification/delete/{ut_id}', 'admin@destroy');
-//Route::get('/portal/admin/verification/admin','preRegController@admin')->name('preReg.admin'); //admin
+
 Route::get('/portal/admin/verification/admin/{ut_id}', 'adminController@updateAdmin')->name('admin.updateAdmin');//new user add
 Route::get('/portal/admin/verification/delete/{ut_id}', 'adminController@delete')->name('admin.verification.delete'); //new user delete
 
@@ -203,7 +203,7 @@ Route::get('/portal/admin/userlist/delete/{u_id}', 'adminController@userdelete')
 
 
 Route::get('/portal/admin/viewtsf','adminController@viewtsf')->name('admin.viewtsf');//viewtsf
-Route::get('/portal/admin/section','adminController@section')->name('admin.section');//section
+Route::get('/portal/admin/rented','adminController@rented')->name('admin.rented');//rented
 
 
 Route::get('/portal/admin/department','adminController@departmentinsert')->name('admin.department');
@@ -213,6 +213,7 @@ Route::get('/portal/admin/department','adminController@department')->name('admin
 //Route::get('/portal/admin/course','adminController@courseinsert')->name('admin.course');
 Route::post('/portal/admin/car', 'adminController@insertcar');
 Route::get('/portal/admin/car','adminController@car')->name('admin.car');
+Route::get('/portal/admin/car/delete/{c_id}', 'adminController@cardelete')->name('admin.car.cardelete'); //valid user delete
 
 
 
@@ -221,24 +222,9 @@ Route::get('/portal/admin/car','adminController@car')->name('admin.car');
 
 
 
-
-
-
-
-
-
-
-
 //tsfview starst
 Route::get('/portal/tsfview/{t_name}','tsfViewController@index')->name('tsfview.index');
 
-//tsfview ends
-
-//Route::get('/portal/admin','adminController@index')->name('admin.index');
-
-//Route::get('/portal/register','registerController@index')->name('register.index');
-
-//Route::get('/portal/student','studentController@index')->name('student.index');
 
 });
 //portal ends
@@ -247,7 +233,9 @@ Route::get('/portal/tsfview/{t_name}','tsfViewController@index')->name('tsfview.
 Route::get('/home/details/{sid}', 'HomeController@details')->name('home.details');
 Route::get('/home/stdList', 'HomeController@show')->name('home.stdlist');
 Route::get('/home/add', 'HomeController@add')->name('home.add');
+
 //Route::get('/home/add', ["as"=>"home.add","uses"=>"HomeController@add"]);
+
 Route::post('/home/add', 'HomeController@create');
 Route::get('/home/edit/{sid}', 'HomeController@edit')->name('home.edit');
 Route::post('/home/edit/{sid}', 'HomeController@update');
@@ -256,5 +244,3 @@ Route::post('/home/delete/{sid}', 'HomeController@destroy');
 Route::get('/logout', 'logoutController@index');
 
 //Route::resource('accounts', 'AccountController');
-
-
